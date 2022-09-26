@@ -1,11 +1,10 @@
-// ignore: depend_on_referenced_packages
-import 'package:colegio_app/Home.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:app_jefferson/Models/tasks_data.dart';
+import 'package:app_jefferson/Screens/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -15,13 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'School App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      // builder: (context) => TaskData(),
+      // create: (BuildContext context) {},
+      create: (context) => TaskData(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const home_screen(),
       ),
-      home: home_screen(),
     );
   }
 }
+
